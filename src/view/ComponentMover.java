@@ -28,7 +28,7 @@ import javax.swing.SwingUtilities;
  *  @author Rob Camick
  */
 
-public class ComponentMover extends MouseAdapter
+public abstract class ComponentMover extends MouseAdapter
 {
 	private Insets dragInsets = new Insets(0, 0, 0, 0);
 	private Dimension snapSize = new Dimension(1, 1);
@@ -353,6 +353,7 @@ public class ComponentMover extends MouseAdapter
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
+            
 		if (!potentialDrag) return;
 
 		source.removeMouseMotionListener( this );

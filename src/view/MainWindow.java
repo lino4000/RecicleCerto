@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import model.Game;
 
 /**
@@ -18,6 +22,27 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        jScrollPaneTrashCans.getViewport().setOpaque(false);
+    }
+    
+    public void boardAdd(Component c){
+        pnBoard.add(c);
+    }
+
+    public void boardRemove(Component c){
+        pnBoard.remove(c);
+    }
+
+    public void setTrashCansViewport(JPanel panel){
+        jScrollPaneTrashCans.setViewportView(panel);
+    }
+    
+    public void updateTimer( String t ){
+        lbTimer.setText(t);
+    }
+
+    public void updateScore( String t ){
+        lbScore.setText(t);
     }
 
     /**
@@ -29,81 +54,117 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenuGame = new javax.swing.JMenu();
-        jMenuItemStart = new javax.swing.JMenuItem();
-        jMenuItemReStart = new javax.swing.JMenuItem();
-        jSeparatorExit = new javax.swing.JPopupMenu.Separator();
-        jMenuItemExit = new javax.swing.JMenuItem();
-        jMenuOptions = new javax.swing.JMenu();
+        pnBoard = new javax.swing.JPanel();
+        jScrollPaneTrashCans = new javax.swing.JScrollPane();
+        pnScore = new javax.swing.JPanel();
+        lbTimer = new javax.swing.JLabel();
+        lbScore = new javax.swing.JLabel();
+        mnbMain = new javax.swing.JMenuBar();
+        mnGame = new javax.swing.JMenu();
+        mniStart = new javax.swing.JMenuItem();
+        mnsExit = new javax.swing.JPopupMenu.Separator();
+        mniExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainWindow"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 800));
-        setSize(new java.awt.Dimension(600, 800));
+        setSize(new java.awt.Dimension(800, 800));
 
-        jMenuGame.setText("Jogo");
+        jScrollPaneTrashCans.setBorder(null);
+        jScrollPaneTrashCans.setOpaque(false);
 
-        jMenuItemStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/start.png"))); // NOI18N
-        jMenuItemStart.setText("Começar");
-        jMenuItemStart.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout pnBoardLayout = new javax.swing.GroupLayout(pnBoard);
+        pnBoard.setLayout(pnBoardLayout);
+        pnBoardLayout.setHorizontalGroup(
+            pnBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneTrashCans, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        pnBoardLayout.setVerticalGroup(
+            pnBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnBoardLayout.createSequentialGroup()
+                .addGap(0, 611, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTrashCans, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        lbTimer.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        lbTimer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbTimer.setText("00:00.0");
+        lbTimer.setBorder(javax.swing.BorderFactory.createTitledBorder("Tempo"));
+        lbTimer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        lbScore.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        lbScore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbScore.setText("0");
+        lbScore.setBorder(javax.swing.BorderFactory.createTitledBorder("Pontuação"));
+        lbScore.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout pnScoreLayout = new javax.swing.GroupLayout(pnScore);
+        pnScore.setLayout(pnScoreLayout);
+        pnScoreLayout.setHorizontalGroup(
+            pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnScoreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbScore, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbTimer, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnScoreLayout.setVerticalGroup(
+            pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lbScore)
+                .addComponent(lbTimer))
+        );
+
+        mnGame.setText("Jogo");
+
+        mniStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/start.png"))); // NOI18N
+        mniStart.setText("Começar");
+        mniStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemStartActionPerformed(evt);
+                mniStartActionPerformed(evt);
             }
         });
-        jMenuGame.add(jMenuItemStart);
+        mnGame.add(mniStart);
+        mnGame.add(mnsExit);
 
-        jMenuItemReStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/refresh.png"))); // NOI18N
-        jMenuItemReStart.setText("Recomeçar");
-        jMenuItemReStart.addActionListener(new java.awt.event.ActionListener() {
+        mniExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/exit.png"))); // NOI18N
+        mniExit.setText("Sair");
+        mniExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemReStartActionPerformed(evt);
+                mniExitActionPerformed(evt);
             }
         });
-        jMenuGame.add(jMenuItemReStart);
-        jMenuGame.add(jSeparatorExit);
+        mnGame.add(mniExit);
 
-        jMenuItemExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/exit.png"))); // NOI18N
-        jMenuItemExit.setText("Sair");
-        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExitActionPerformed(evt);
-            }
-        });
-        jMenuGame.add(jMenuItemExit);
+        mnbMain.add(mnGame);
 
-        jMenuBar.add(jMenuGame);
-
-        jMenuOptions.setText("Opções");
-        jMenuBar.add(jMenuOptions);
-
-        setJMenuBar(jMenuBar);
+        setJMenuBar(mnbMain);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemReStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReStartActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemReStartActionPerformed
-
-    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItemExitActionPerformed
+    }//GEN-LAST:event_mniExitActionPerformed
 
-    private void jMenuItemStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartActionPerformed
+    private void mniStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniStartActionPerformed
         Game.start();
-    }//GEN-LAST:event_jMenuItemStartActionPerformed
+    }//GEN-LAST:event_mniStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,12 +202,15 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenu jMenuGame;
-    private javax.swing.JMenuItem jMenuItemExit;
-    private javax.swing.JMenuItem jMenuItemReStart;
-    private javax.swing.JMenuItem jMenuItemStart;
-    private javax.swing.JMenu jMenuOptions;
-    private javax.swing.JPopupMenu.Separator jSeparatorExit;
+    private javax.swing.JScrollPane jScrollPaneTrashCans;
+    private javax.swing.JLabel lbScore;
+    private javax.swing.JLabel lbTimer;
+    private javax.swing.JMenu mnGame;
+    private javax.swing.JMenuBar mnbMain;
+    private javax.swing.JMenuItem mniExit;
+    private javax.swing.JMenuItem mniStart;
+    private javax.swing.JPopupMenu.Separator mnsExit;
+    private javax.swing.JPanel pnBoard;
+    private javax.swing.JPanel pnScore;
     // End of variables declaration//GEN-END:variables
 }

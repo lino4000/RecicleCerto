@@ -5,6 +5,7 @@
  */
 package control;
 
+import java.awt.BorderLayout;
 import model.Game;
 import view.MainWindow;
 
@@ -15,6 +16,6 @@ import view.MainWindow;
 public class Bootloader {
     
     public static void main(String[] args) {
-        Game game = new Game(new MainWindow());
+        Game.open(new MainWindow());
     }
 }
